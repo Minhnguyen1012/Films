@@ -1,38 +1,155 @@
+.ab {
+  background-color: black !important;
+}
+.newnavbar {
+  background: linear-gradient(to right, #7e1111, #d67804);
+
+  font-size: 24px;
+}
+.detailTop {
+  margin-top: 6.5%;
+}
+
 .App {
-  text-align: center;
+  background-color: black;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+a:hover {
+  color: orange !important;
+}
+.page-link {
+  font-size: 25px;
+  background-color: rgb(47, 47, 47) !important;
+  color: red;
+}
+.active .page-link {
+  /* color: red !important; */
+  background-color: #c23616 !important;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+.page-link {
+  border: 1px solid #1b181773 !important;
+  border-radius: 0.75 !important ;
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+/* Movie cards */
+.wrapper {
   display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
+  flex-wrap: wrap;
+  width: 95%;
+  justify-content: space-between;
+}
+
+.wrapper .card {
+  width: 280px;
+  height: 360px;
+  border-radius: 15px;
+  padding: 1.5rem;
+  background: white;
+  position: relative;
+  display: flex;
+  align-items: flex-end;
+  transition: 0.4s ease-out;
+  box-shadow: 0px 7px 10px rgba(black, 0.5);
+}
+.wrapper .card:hover {
+  transform: translateY(5px);
+}
+.wrapper .card:hover:before {
+  opacity: 1;
+}
+.wrapper .card:hover .info {
+  opacity: 1;
+  transform: translateY(0px);
+}
+.wrapper .card:before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  display: block;
+  width: 100%;
+  height: 100%;
+  border-radius: 15px;
+  background: rgba(black, 0.6);
+  z-index: 2;
+  transition: 0.5s;
+  opacity: 0;
+}
+.wrapper .card img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  position: absolute;
+  top: 0;
+  left: 0;
+  border-radius: 15px;
+}
+.wrapper .card .info {
+  position: relative;
+  z-index: 3;
+  color: white;
+  opacity: 0;
+  transform: translateY(30px);
+  transition: 0.5s;
+}
+.wrapper .card .info h1 {
+  margin: 0px;
+}
+.wrapper .card .info p {
+  letter-spacing: 1px;
+  font-size: 15px;
+  margin-top: 8px;
+}
+.wrapper .card .info button {
+  padding: 0.6rem;
+  outline: none;
+  border: none;
+  border-radius: 3px;
+  background: white;
+  color: black;
+  font-weight: bold;
+  cursor: pointer;
+  transition: 0.4s ease;
+}
+.wrapper .card .info button:hover {
+  background: dodgerblue;
   color: white;
 }
 
-.App-link {
-  color: #61dafb;
+/* footers */
+footer {
+  color: #95a5a6;
+  font-size: 21px;
+  width: 100%;
+  background-color: #42424267;
+  display: flex;
+  /* justify-content: center; */
+}
+.flexify .icon {
+  font-size: 30px;
+}
+.flexify {
+  font-size: 25px;
+  display: flex;
+  width: 200px;
+  height: 40px;
+}
+.footerBox {
+  width: 350px;
+  height: 300px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.bigFotterBox {
+  width: 100%;
+  max-width: 1205px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
-}
+/* .Covid19 {
+  height: 600px;
+} */
