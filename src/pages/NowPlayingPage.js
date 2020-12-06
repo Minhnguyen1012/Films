@@ -1,10 +1,10 @@
 import React, { useEffect, useState } from "react";
-import Cards from "../componens/Cards";
-import Carousels from "../componens/Carousels";
-import PaginationBar from "../componens/PaginationBar";
+import Cards from "../components/Cards";
+import Carousels from "../components/Carousels";
+import PaginationBar from "../components/PaginationBar";
 import api from "../apiService";
-import PublicNavbar from "../componens/PublicNavbar";
-import Footer from "../componens/Footer";
+import PublicNavbar from "../components/PublicNavbar";
+import Footer from "../components/Footer";
 
 const apikey = process.env.REACT_APP_APIKEY;
 

@@ -2,9 +2,9 @@ import React, { useState, useEffect } from "react";
 import { Button, Col, Container, Row } from "react-bootstrap";
 import { useParams } from "react-router-dom";
 import api from "../apiService";
-import Footer from "../componens/Footer";
-import NewNav from "../componens/NewNav";
-import PublicNavbar from "../componens/PublicNavbar";
+import Footer from "../components/Footer";
+import NewNav from "../components/NewNav";
+import PublicNavbar from "../components/PublicNavbar";
 
 const FilmsDetail = () => {
   const apikey = process.env.REACT_APP_APIKEY;
@@ -20,11 +20,9 @@ const FilmsDetail = () => {
     const fetchData = async () => {
       setLoading(true);
       try {
-        const res = await api.get(
-          `https://api.themoviedb.org/3/movie/${movies}?api_key=${apikey}`
-        );
+        const res = await api.get(`/movie/${movies}?api_key=${apikey}`);
         console.log(res);
-        setMovieList(res.data.result);
+        setMovieList(res.data);
         console.log(res.data);
       } catch (error) {
         console.log(error);
@@ -46,10 +44,7 @@ const FilmsDetail = () => {
         <Row className="detailTop">
           <Col md={3}>
             {movies && (
-              <img
-                src={`https://image.tmdb.org/t/p/w500/${movies.poster_path}`}
-                alt="card img"
-              />
+              <img src={`${IMAGES_API}${movies.poster_path}`} alt="card img" />
             )}
           </Col>
           <Col md={9} style={{ color: "white" }}>

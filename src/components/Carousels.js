@@ -3,7 +3,7 @@ import { Carousel } from "react-bootstrap";
 
 const Carousels = ({ movies }) => {
   return (
-    <div style={{ marginTop: "70px" }}>
+    <div style={{ marginTop: "15px" }}>
       <Carousel className="corona">
         <Carousel.Item className="Covid19">
           <img

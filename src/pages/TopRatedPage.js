@@ -1,10 +1,10 @@
 import React, { useEffect, useState } from "react";
-import Cards from "../componens/Cards";
-import Carousels from "../componens/Carousels";
-import PaginationBar from "../componens/PaginationBar";
+import Cards from "../components/Cards";
+import Carousels from "../components/Carousels";
+import PaginationBar from "../components/PaginationBar";
 import api from "../apiService";
-import PublicNavbar from "../componens/PublicNavbar";
-import Footer from "../componens/Footer";
+import PublicNavbar from "../components/PublicNavbar";
+import Footer from "../components/Footer";
 
 const apikey = process.env.REACT_APP_APIKEY;
 
@@ -31,6 +31,22 @@ const TopRatedPage = () => {
       try {
         let url = `movie/top_rated?api_key=${apikey}&language=en-US&page=${pageNum}`;
         if (query) url += `&query=${query}`;
+        const res = await api.get(url);
+        setMovieList(res.data.results);
+        setTotalPageNum(res.data.total_pages);
+      } catch (error) {
+        console.log(error);
+      }
+    };
+    fetchData();
+  }, [pageNum, query]);
+
+  useEffect(() => {
+    if (!query) return;
+    console.log("Searching");
+    const fetchData = async () => {
+      try {
+        let url = `search/movie?api_key=${apikey}&language=en-US&page=${pageNum}&query=${query}`;
         const res = await api.get(url);
         setMovieList(res.data.results);
         setTotalPageNum(res.data.total_pages);
