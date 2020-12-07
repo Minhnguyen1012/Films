@@ -26,34 +26,55 @@ const NowPlayingPage = () => {
     setQuery(searchInput);
   };
 
-  useEffect(() => {
-    if (query) return;
-    const fetchData = async () => {
-      try {
-        let url = `movie/now_playing?api_key=${apikey}&language=en-US&page=${pageNum}`;
-        // if (query) url += `&query=${query}`;
-        const res = await api.get(url);
-        setMovieList(res.data.results);
-        setTotalPageNum(res.data.total_pages);
-      } catch (error) {
-        console.log(error);
-      }
-    };
-    fetchData();
-  }, [pageNum, query]);
+  // useEffect(() => {
+  //   if (query) return;
+  //   const fetchData = async () => {
+  //     try {
+  //       let url = `movie/now_playing?api_key=${apikey}&language=en-US&page=${pageNum}`;
+  //       // if (query) url += `&query=${query}`;
+  //       const res = await api.get(url);
+  //       setMovieList(res.data.results);
+  //       setTotalPageNum(res.data.total_pages);
+  //     } catch (error) {
+  //       console.log(error);
+  //     }
+  //   };
+  //   fetchData();
+  // }, [pageNum, query]);
 
+  // useEffect(() => {
+  //   if (!query) return;
+  //   console.log("Searching");
+  //   const fetchData = async () => {
+  //     try {
+  //       let url = `search/movie?api_key=${apikey}&language=en-US&page=${pageNum}query&=${query}`;
+  //       const res = await api.get(url);
+  //       setMovieList(res.data.results);
+  //       setTotalPageNum(res.data.total_pages);
+  //     } catch (error) {
+  //       console.log(error);
+  //     }
+  //   };
+  //   fetchData();
+  // }, [pageNum, query]);
   useEffect(() => {
-    if (!query) return;
-    console.log("Searching");
     const fetchData = async () => {
       try {
-        let url = `search/movie?api_key=${apikey}&language=en-US&page=${pageNum}query&=${query}`;
+        let url;
+        if (query) {
+          console.log("search");
+          url = `search/movie?api_key=${apikey}&language=en-US&page=${pageNum}&query=${query}`;
+        } else {
+          url = `movie/now_playing?api_key=${apikey}&language=en-US&page=${pageNum}`;
+        }
+        setLoading(true);
         const res = await api.get(url);
         setMovieList(res.data.results);
         setTotalPageNum(res.data.total_pages);
       } catch (error) {
         console.log(error);
       }
+      setLoading(false);
     };
     fetchData();
   }, [pageNum, query]);

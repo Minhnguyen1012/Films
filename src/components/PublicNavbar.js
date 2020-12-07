@@ -22,7 +22,9 @@ const PublicNavbar = ({
       variant="dark"
     >
       <Navbar.Brand>
-        <img src={logo} alt="CoderSchool" width="200px" />
+        <Nav.Link as={NavLink} exact={true} to="/">
+          <img src={logo} alt="CoderSchool" width="200px" />
+        </Nav.Link>
       </Navbar.Brand>
       <Navbar.Toggle aria-controls="responsive-navbar-nav" />
       <Navbar.Collapse id="responsive-navbar-nav">
