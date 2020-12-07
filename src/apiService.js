@@ -6,7 +6,7 @@ const api = axios.create({
     "Content-Type": "application/json",
   },
   params: {
-    api_key: process.env.REACT_APP_BACKEND_API,
+    api_key: process.env.REACT_APP_APIKEY,
   },
 });
 
