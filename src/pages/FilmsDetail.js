@@ -59,8 +59,8 @@ const FilmsDetail = () => {
             )}
           </Col>
           <Col md={7} style={{ color: "white" }}>
-            <div>
-              <h2>{movieList?.title}Title</h2>
+            <div className="mt-3">
+              <h1>{movieList?.title}</h1>
             </div>
             <div>
               <strong>Year:</strong> {movieList?.release_date}

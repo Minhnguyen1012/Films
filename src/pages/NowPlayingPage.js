@@ -47,7 +47,7 @@ const NowPlayingPage = () => {
     console.log("Searching");
     const fetchData = async () => {
       try {
-        let url = `search/movie?api_key=${apikey}&language=en-US&page=${pageNum}&query=${query}`;
+        let url = `search/movie?api_key=${apikey}&language=en-US&page=${pageNum}query&=${query}`;
         const res = await api.get(url);
         setMovieList(res.data.results);
         setTotalPageNum(res.data.total_pages);

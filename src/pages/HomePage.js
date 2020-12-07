@@ -26,55 +26,67 @@ const HomePage = () => {
     setQuery(searchInput);
   };
 
-  useEffect(() => {
-    const fetchData = async () => {
-      try {
-        let url = `movie/popular?api_key=${apikey}&language=en-US&page=${pageNum}`;
-        if (query) url += `&query=${query}`;
-        const res = await api.get(url);
-        setMovieList(res.data.results);
-        setTotalPageNum(res.data.total_pages);
-      } catch (error) {
-        console.log(error);
-      }
-    };
-    fetchData();
-  }, [pageNum, query]);
+  // useEffect(() => {
+  //   const fetchData = async () => {
+  //     try {
+  //       let url = `movie/popular?api_key=${apikey}&language=en-US&page=${pageNum}`;
+  //       if (query) url += `&query=${query}`;
+  //       const res = await api.get(url);
+  //       setMovieList(res.data.results);
+  //       setTotalPageNum(res.data.total_pages);
+  //     } catch (error) {
+  //       console.log(error);
+  //     }
+  //   };
+  //   fetchData();
+  // }, [pageNum, query]);
 
   useEffect(() => {
-    if (!query) return;
-    console.log("Searching");
     const fetchData = async () => {
       try {
-        let url = `search/movie?api_key=${apikey}&language=en-US&page=${pageNum}&query=${query}`;
+        let url;
+        if (query) {
+          console.log("search");
+          url = `search/movie?api_key=${apikey}&language=en-US&page=${pageNum}&query=${query}`;
+        } else {
+          url = `movie/popular?api_key=${apikey}&language=en-US&page=${pageNum}`;
+        }
+        setLoading(true);
         const res = await api.get(url);
         setMovieList(res.data.results);
         setTotalPageNum(res.data.total_pages);
       } catch (error) {
         console.log(error);
       }
+      setLoading(false);
     };
     fetchData();
   }, [pageNum, query]);
 
   return (
     <div>
-      <PublicNavbar
-        loading={loading}
-        searchInput={searchInput}
-        handleSearchChange={handleSearchChange}
-        handleSubmit={handleSubmit}
-      />
+      {!loading ? (
+        <>
+          <PublicNavbar
+            loading={loading}
+            searchInput={searchInput}
+            handleSearchChange={handleSearchChange}
+            handleSubmit={handleSubmit}
+          />
 
-      <Carousels movies={movieList} />
-      <Cards movies={movieList} />
+          <Carousels movies={movieList} />
+          <Cards movies={movieList} />
 
-      <PaginationBar
-        pageNum={pageNum}
-        setPageNum={setPageNum}
-        totalPageNum={totalPageNum}
-      />
-      <Footer />
+          <PaginationBar
+            pageNum={pageNum}
+            setPageNum={setPageNum}
+            totalPageNum={totalPageNum}
+          />
+          <Footer />
+        </>
+      ) : (
+        <div>haha</div>
+      )}
     </div>
   );
 };
