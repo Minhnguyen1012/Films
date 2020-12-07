@@ -5,6 +5,9 @@ const api = axios.create({
   headers: {
     "Content-Type": "application/json",
   },
+  params: {
+    api_key: process.env.REACT_APP_BACKEND_API,
+  },
 });
 
 // Add a request interceptor
